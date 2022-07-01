@@ -1,0 +1,22 @@
+{
+  "name": "battle-ship",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jokkeuh/Battle-ship.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jokkeuh/Battle-ship/issues"
+  },
+  "homepage": "https://github.com/Jokkeuh/Battle-ship#readme",
+  "devDependencies": {
+    "jest": "^28.1.2"
+  }
+}
