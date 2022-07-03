@@ -1,8 +1,27 @@
 
-let board = Array(10).fill("0").map(x => Array(10).fill("0"))
+let board = Array(10).fill("0").map(x => Array(10).fill("0"));
+let ships = [];
+const generateShips =(ships) => {
+    const carrier = new Ship(5)
+    const battleShip = new Ship(4)
+    const destroyer = new Ship(3)
+    const submarine = new Ship(3)
+    const patrol = new Ship(2)
 
+    ships.push(carrier)
+    ships.push(battleShip)
+    ships.push(destroyer)
+    ships.push(submarine)
+    ships.push(patrol)
+
+    return ships
+
+}
+const resetShips = (ships) =>{
+    ships.length = 0
+}
 class Ship {
-            constructor(length, axis){
+            constructor(length){
                 this.length = length;
                 this.health = length;
                 
@@ -51,7 +70,6 @@ class Ship {
                 return {position,board}
             }
             
-
 }
 
 
@@ -70,20 +88,49 @@ let hits = []
 
 console.log(board)
 class Gameboard {
-        constructor(board, x, y){
+        constructor(board, ships){
                     this.board = board;
-                    this.x = x;
-                    this.y = y;
+                    this.ships = ships
+                    
                 }
         
-       placeBoat(){
-
-           
-        }
         receiveAttack(x, y){
+            let status = "miss";
 
+            if(board[x][y] == "hit" ||
+               board[x][y] == "miss"){
+                console.log(`already hit at ${x},${y}` )
+                return;
+            }
+            if(board[x][y] == "0"){
+                board[x][y] == "miss"
+            }else{
+                status = "hit"
+            }
+            if(board[x][y] == "SHIP"){
+                ships
+            }
+            board[x][y] = status
+        
+            return board
         }
 }
+
+const testGame = new Gameboard(board, ships)
+
+
+
+const __placeBoat = () => {
+    ships[0].getPosition("1/1", "ver")
+    ships[1].getPosition("1/3", "ver")
+    ships[2].getPosition("1/5", "ver")
+    ships[3].getPosition("1/7", "ver")
+    ships[4].getPosition("2/9", "ver")
+    
+}
+
+
+
 
 const ResetBoard =() => {
     board = Array(10).fill("0").map(x => Array(10).fill("0"))
@@ -91,7 +138,8 @@ const ResetBoard =() => {
 }
 
 
-
+generateShips(ships)
+__placeBoat()
 
 module.exports = Ship;
 module.exports = Gameboard;
